@@ -1,15 +1,10 @@
-package com.flutterwave.easyapi.data;
+package com.flutterwave.easyapiapp.data;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
 
 public class Source {
 
-    @SerializedName("id")
-    @Expose
     private Object id;
-    @SerializedName("name")
-    @Expose
     private String name;
 
     public Object getId() {

@@ -3,9 +3,9 @@ package com.flutterwave.easyapiapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.flutterwave.easyapi.callbacks.Callbacks
-import com.flutterwave.easyapi.data.NewsResponse
 import com.flutterwave.easyapi.general.EasyApiCaller
 import com.flutterwave.easyapi.general.GET
+import com.flutterwave.easyapiapp.data.NewsResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 

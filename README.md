@@ -14,7 +14,8 @@ Heres an example of getting news articles from a public api at [newsapi.org](htt
                     new Callbacks.onResponse(){
                         @Override
                         public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
-                            NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, class);
+                            // convert to your own class, for example in this case `NewsResponse`
+                            NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
                             Toast.makeText(JavaMainActivity.this, newsResponse.getArticles().size() + " articles fetched", Toast.LENGTH_LONG).show();
                         }
 
@@ -66,7 +67,7 @@ Here's another example of a post request to create an employee using a public ap
 | showLogResponse(show)      |  Display requests in logcat. Default is false | `Boolean` | Optional
 | request()      |  Make network request |  | Required
 | await(callback)      |  Call to get result of network request | `Callback` | Required
-| EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class) |  Call to convert json string to a corresponding java class | `jsonString`, `Class` | Optional
+| EasyApiUtils.convertFromJson(jsonAsString, class) |  Call to convert json string to a corresponding java class | `jsonString`, `Class` | Optional
 
 ##  Help
 * Find a bug? [Open an issue](https://github.com/BolajisBrain/easyapi/issues)

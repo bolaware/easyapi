@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     private fun post(){
 
         val obj = JSONObject()
-        obj.put("name", "Bolaji")
+        obj.put("name", "John")
         obj.put("job", "Engineer")
 
         EasyApiCaller(this)

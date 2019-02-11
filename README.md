@@ -5,14 +5,13 @@ EasyApi is an android tool to easily make network request without the fuss of se
 Heres an example of getting news response from a public api at [newsapi.org](https://newsapi.org)
 
     EasyApiCaller(this)
-                .method(GET)  //can be GET or POST
-                .timeOut(1)   //timeout in  seconds
-                .logResponse(true)  //log response to terminal
-                .url("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")  //your requested url
-                .request()  //make network request
+                .method(GET)
+                .timeOut(1)
+                .logResponse(true)
+                .url("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
+                .request()
                 .await(object : Callbacks.onResponse {
                     override fun onResponse(jsonAsString: String, easyApiCaller: EasyApiCaller) {
-                    // get raw json and convert to java class, in  this case NewsResponse
                         newsResponse = easyApiCaller.convertFromJSON<NewsResponse>(jsonAsString)
                     }
 

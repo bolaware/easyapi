@@ -23,7 +23,7 @@ Heres an example of getting news response from a public api at [newsapi.org](htt
 ## Make a POST request
 Here's another example of a post request to create an employee using a public api at [reqres.in](https://reqres.in)
 
-    val obj = JSONObject()
+        val obj = JSONObject()
         obj.put("name", "John")
         obj.put("job", "Engineer")
 

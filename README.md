@@ -4,45 +4,60 @@ EasyApi is an android tool to easily make network request without the fuss of se
 ## Make a GET request
 Heres an example of getting news response from a public api at [newsapi.org](https://newsapi.org)
 
-    EasyApiCaller(this)
+    new EasyApiCaller(this)
                 .method(GET)
                 .timeOut(1)
                 .logResponse(true)
                 .url("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
                 .request()
-                .await(object : Callbacks.onResponse {
-                    override fun onResponse(jsonAsString: String, easyApiCaller: EasyApiCaller) {
-                        newsResponse = easyApiCaller.convertFromJSON<NewsResponse>(jsonAsString)
-                    }
+                .await(
+                        new Callbacks.onResponse(){
+                            @Override
+                            public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
+                                NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
+                                textView.setText(jsonAsString);
+                            }
 
-                    override fun onFailure(errorResponse: String?, responseCode: Int) {
-                        textTV.text = errorResponse
-                    }
-                })
+                            @Override
+                            public void onFailure(@Nullable String errorResponse, int responseCode) {
+                                textView.setText(errorResponse);
+                            }
+                        }
+                );
 
 ## Make a POST request
 Here's another example of a post request to create an employee using a public api at [reqres.in](https://reqres.in)
 
-        val obj = JSONObject()
-        obj.put("name", "John")
-        obj.put("job", "Engineer")
+        try {
+            final TextView textView = (TextView) findViewById(R.id.textTV);
 
-        EasyApiCaller(this)
-                .method(POST, obj)
-                .timeOut(1)
-                .logResponse(true)
-                .url("https://reqres.in/api/users")
-                .request()
-                .await(object : Callbacks.onResponse {
-                    override fun onResponse(jsonAsString: String, easyApiCaller: EasyApiCaller) {
-                        textTV.text = jsonAsString
-                    }
 
-                    override fun onFailure(errorResponse: String?, responseCode: Int) {
-                        textTV.text = errorResponse
-                    }
-                })
-    }
+            JSONObject obj = new JSONObject();
+            obj.put("name", "John");
+            obj.put("job", "Engineer");
+
+            new EasyApiCaller(this)
+                    .method(POST, obj)
+                    .timeOut(1)
+                    .logResponse(true)
+                    .url("https://reqres.in/api/users")
+                    .request()
+                    .await(
+                        new Callbacks.onResponse(){
+                            @Override
+                            public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
+                                textView.setText(jsonAsString);
+                            }
+
+                            @Override
+                            public void onFailure(@Nullable String errorResponse, int responseCode) {
+                                textView.setText(errorResponse);
+                            }
+                        }
+                    );
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
 
 ##  Help
 * Find a bug? [Open an issue](https://github.com/BolajisBrain/easyapi/issues)

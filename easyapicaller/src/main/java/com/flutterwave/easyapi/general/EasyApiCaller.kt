@@ -48,27 +48,27 @@ class EasyApiCaller(val activity: AppCompatActivity) {
     private var body = JSONObject()
 
 
-    fun timeOut(timeOut : Long): EasyApiCaller {
+    fun setTimeOut(timeOut : Long): EasyApiCaller {
         this.timeOut = timeOut
         return this
     }
 
-    fun logResponse(logResponse : Boolean): EasyApiCaller {
+    fun showLogResponse(logResponse : Boolean): EasyApiCaller {
         this.logResponse = logResponse
         return this
     }
 
-    fun url(url : String) : EasyApiCaller {
+    fun setUrl(url : String) : EasyApiCaller {
         this.url = url
         return this
     }
 
-    fun method(method : String) : EasyApiCaller {
+    fun setMethod(method : String) : EasyApiCaller {
         this.method = method
         return this
     }
 
-    fun method(method : String, body: JSONObject) : EasyApiCaller {
+    fun setMethod(method : String, body: JSONObject) : EasyApiCaller {
         this.method = method
         this.body = body
         return this

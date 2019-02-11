@@ -5,10 +5,10 @@ EasyApi is an android tool to easily make network request without the fuss of se
 Heres an example of getting news articles from a public api at [newsapi.org](https://newsapi.org)
 
     new EasyApiCaller(this)
-                .method(GET)
-                .timeOut(1)
-                .logResponse(true)
-                .url("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
+                .setMethod(GET)
+                .setTimeOut(1)
+                .showLogResponse(true)
+                .setUrl("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
                 .request()
                 .await(
                     new Callbacks.onResponse(){
@@ -34,10 +34,10 @@ Here's another example of a post request to create an employee using a public ap
             obj.put("job", "Engineer");
 
             new EasyApiCaller(this)
-                    .method(POST, obj)
-                    .timeOut(1)
-                    .logResponse(true)
-                    .url("https://reqres.in/api/users")
+                    .setMethod(POST, obj)
+                    .setTimeOut(1)
+                    .showLogResponse(true)
+                    .setUrl("https://reqres.in/api/users")
                     .request()
                     .await(
                         new Callbacks.onResponse(){
@@ -56,6 +56,17 @@ Here's another example of a post request to create an employee using a public ap
         } catch (JSONException e){
             e.printStackTrace();
         }
+
+##  Methods
+| function        | parameter           | type | required  |
+| ------------- |:-------------:| -----:| -----:|
+| setMethod(method)      |  Set request methods with `post` or `get` | `String` | Required
+| setUrl(url)      |  Set full url as a string | `String` | Required
+| setTimeOut(timeOut)      |  Set time out response in minutes. Default is one minute | `Long` | Optional
+| showLogResponse(show)      |  Display requests in logcat. Default is false | `Boolean` | Optional
+| request()      |  Make network request |  | Required
+| await(callback)      |  Call to get result of network request | `Callback` | Required
+| EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class) |  Call to convert json string to a corresponding java class | `jsonString`, `Class` | Optional
 
 ##  Help
 * Find a bug? [Open an issue](https://github.com/BolajisBrain/easyapi/issues)

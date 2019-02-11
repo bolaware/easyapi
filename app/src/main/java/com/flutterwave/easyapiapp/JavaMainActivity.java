@@ -39,10 +39,10 @@ public class JavaMainActivity extends AppCompatActivity {
             obj.put("job", "Engineer");
 
             new EasyApiCaller(this)
-                    .method(POST, obj)
-                    .timeOut(1)
-                    .logResponse(true)
-                    .url("https://reqres.in/api/users")
+                    .setMethod(POST, obj)
+                    .setTimeOut(1)
+                    .showLogResponse(true)
+                    .setUrl("https://reqres.in/api/users")
                     .request()
                     .await(
                         new Callbacks.onResponse(){
@@ -67,10 +67,10 @@ public class JavaMainActivity extends AppCompatActivity {
         final TextView textView = findViewById(R.id.textTV);
 
         new EasyApiCaller(this)
-                .method(GET)
-                .timeOut(1)
-                .logResponse(true)
-                .url("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
+                .setMethod(GET)
+                .setTimeOut(1)
+                .showLogResponse(true)
+                .setUrl("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
                 .request()
                 .await(
                         new Callbacks.onResponse(){

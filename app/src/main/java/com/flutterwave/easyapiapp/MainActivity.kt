@@ -2,6 +2,7 @@ package com.flutterwave.easyapiapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.flutterwave.easyapi.EasyApiUtils
 import com.flutterwave.easyapi.callbacks.Callbacks
 import com.flutterwave.easyapi.general.EasyApiCaller
 import com.flutterwave.easyapi.general.GET
@@ -22,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun get(){
-        var newsResponse: NewsResponse?
         EasyApiCaller(this)
                 .method(GET)
                 .timeOut(1)
@@ -31,10 +31,8 @@ class MainActivity : AppCompatActivity() {
                 .request()
                 .await(object : Callbacks.onResponse {
                     override fun onResponse(jsonAsString: String, easyApiCaller: EasyApiCaller) {
-                        newsResponse = easyApiCaller.convertFromJSON<NewsResponse>(jsonAsString)
-                        textTV.text = newsResponse?.let {
-                            it.articles.size.toString()
-                        }
+                        var newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse::class.java)
+                        textTV.text = jsonAsString
                     }
 
                     override fun onFailure(errorResponse: String?, responseCode: Int) {

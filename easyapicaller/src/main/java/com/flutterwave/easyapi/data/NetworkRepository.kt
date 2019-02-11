@@ -2,7 +2,6 @@ package com.flutterwave.easyapi.data
 
 import com.flutterwave.easyapi.general.GET
 import com.flutterwave.easyapi.general.POST
-import com.flutterwave.easyapi.general.PUT
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import kotlinx.coroutines.experimental.Deferred
@@ -73,9 +72,6 @@ class NetworkRepository(val timeOut : Long = 1, val logResponse : Boolean = fals
 
     fun fetch(body  : JSONObject, method : String) : Deferred<Response<ResponseBody>>?{
         when(method){
-            PUT -> {
-
-            }
             GET -> {
                 return service.genericGET(url)
             }

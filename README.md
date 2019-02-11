@@ -58,6 +58,23 @@ Here's another example of a post request to create an employee using a public ap
             e.printStackTrace();
         }
 
+## Adding it to your project
+**Step 1.** Add it in your root build.gradle at the end of repositories:
+
+    allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+**Step 2.** Add the dependency
+
+    dependencies {
+	      implementation 'com.github.BolajisBrain:easyapi:v1.1'
+	}
+
+
 ##  Methods
 | function        | parameter           | type | required  |
 | ------------- |:-------------:| -----:| -----:|

@@ -14,7 +14,7 @@ Heres an example of getting news articles from a public api at [newsapi.org](htt
                     new Callbacks.onResponse(){
                         @Override
                         public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
-                            NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
+                            NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, class);
                             Toast.makeText(JavaMainActivity.this, newsResponse.getArticles().size() + " articles fetched", Toast.LENGTH_LONG).show();
                         }
 

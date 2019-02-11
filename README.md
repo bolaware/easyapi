@@ -2,7 +2,7 @@
 EasyApi is an android tool to easily make network request without the fuss of setting up a REST client.
 
 ## Make a GET request
-Heres an example of getting news response from a public api at [newsapi.org](https://newsapi.org)
+Heres an example of getting news articles from a public api at [newsapi.org](https://newsapi.org)
 
     new EasyApiCaller(this)
                 .method(GET)
@@ -30,7 +30,7 @@ Here's another example of a post request to create an employee using a public ap
 
         try {
             JSONObject obj = new JSONObject();
-            obj.put("name", "John");
+            obj.put("name", "John Doe");
             obj.put("job", "Engineer");
 
             new EasyApiCaller(this)

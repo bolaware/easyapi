@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.flutterwave.easyapi.callbacks.Callbacks
 import com.flutterwave.easyapi.general.EasyApiCaller
 import com.flutterwave.easyapi.general.GET
+import com.flutterwave.easyapi.general.POST
 import com.flutterwave.easyapiapp.data.NewsResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -14,11 +15,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val obj = JSONObject()
-        obj.put("name", "Bolaji")
-        obj.put("job", "Engineer")
-        var newsResponse: NewsResponse?
 
+        // get()
+
+        post()
+    }
+
+    private fun get(){
+        var newsResponse: NewsResponse?
         EasyApiCaller(this)
                 .method(GET)
                 .timeOut(1)
@@ -31,6 +35,29 @@ class MainActivity : AppCompatActivity() {
                         textTV.text = newsResponse?.let {
                             it.articles.size.toString()
                         }
+                    }
+
+                    override fun onFailure(errorResponse: String?, responseCode: Int) {
+                        textTV.text = errorResponse
+                    }
+                })
+    }
+
+    private fun post(){
+
+        val obj = JSONObject()
+        obj.put("name", "Bolaji")
+        obj.put("job", "Engineer")
+
+        EasyApiCaller(this)
+                .method(POST, obj)
+                .timeOut(1)
+                .logResponse(true)
+                .url("https://reqres.in/api/users")
+                .request()
+                .await(object : Callbacks.onResponse {
+                    override fun onResponse(jsonAsString: String, easyApiCaller: EasyApiCaller) {
+                        textTV.text = jsonAsString
                     }
 
                     override fun onFailure(errorResponse: String?, responseCode: Int) {

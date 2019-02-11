@@ -22,31 +22,30 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Response
 
-const val PUT = "put"
 const val POST = "post"
 const val GET = "get"
 
 class EasyApiCaller(val activity: AppCompatActivity) {
 
-    val repo by lazy {
+    private val repo by lazy {
         NetworkRepository(timeOut, true, url)
     }
 
-    var deferredResponse: Deferred<Response<ResponseBody>>? = null
+    private var deferredResponse: Deferred<Response<ResponseBody>>? = null
 
     val gson: Gson by lazy {
         Gson()
     }
 
-    lateinit var method: String
+    private lateinit var method: String
 
-    var timeOut: Long = 1
+    private var timeOut: Long = 1
 
-    var logResponse: Boolean = false
+    private var logResponse: Boolean = false
 
-    lateinit var url : String
+    private lateinit var url : String
 
-    var body = JSONObject()
+    private var body = JSONObject()
 
 
     fun timeOut(timeOut : Long): EasyApiCaller {
@@ -108,7 +107,7 @@ class EasyApiCaller(val activity: AppCompatActivity) {
     }
 
 
-    fun <ResponseType>
+    private fun <ResponseType>
             awaitCall(deferredResponse: Deferred<Response<ResponseType>>?): LiveData<Resource<ResponseType>> {
 
         val result = MutableLiveData<Resource<ResponseType>>()

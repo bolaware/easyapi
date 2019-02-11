@@ -39,11 +39,11 @@ class NetworkRepository(val timeOut : Long = 1, val logResponse : Boolean = fals
         providesApiService(retrofit)
     }
 
-    fun providesApiService(retrofit: Retrofit): ApiService2 {
+    private fun providesApiService(retrofit: Retrofit): ApiService2 {
         return retrofit.create(ApiService2::class.java)
     }
 
-    fun providesOkHttpClient(): OkHttpClient {
+    private fun providesOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .readTimeout(timeOut, TimeUnit.MINUTES)
                 .writeTimeout(timeOut, TimeUnit.MINUTES)
@@ -58,7 +58,7 @@ class NetworkRepository(val timeOut : Long = 1, val logResponse : Boolean = fals
                 .build()
     }
 
-    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    private fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
         val gson = GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                 .create()

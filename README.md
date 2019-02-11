@@ -15,7 +15,7 @@ Heres an example of getting news response from a public api at [newsapi.org](htt
                         @Override
                         public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
                             NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
-                                textView.setText(jsonAsString);
+                            Toast.makeText(JavaMainActivity.this, newsResponse.getArticles().size() + " articles fetched", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
@@ -29,9 +29,6 @@ Heres an example of getting news response from a public api at [newsapi.org](htt
 Here's another example of a post request to create an employee using a public api at [reqres.in](https://reqres.in)
 
         try {
-            final TextView textView = (TextView) findViewById(R.id.textTV);
-
-
             JSONObject obj = new JSONObject();
             obj.put("name", "John");
             obj.put("job", "Engineer");
@@ -46,6 +43,7 @@ Here's another example of a post request to create an employee using a public ap
                         new Callbacks.onResponse(){
                             @Override
                             public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
+                                final TextView textView = (TextView) findViewById(R.id.textTV);
                                 textView.setText(jsonAsString);
                             }
 

@@ -92,7 +92,7 @@ Here's another example of a post request to create an employee using a public ap
 
 ## License
 ```
-Rave's Android DropIn UI
+Easy API
 MIT License
 
 Copyright (c) 2017

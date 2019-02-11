@@ -11,18 +11,18 @@ Heres an example of getting news response from a public api at [newsapi.org](htt
                 .url("https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=8d1024a54b9b473e930770f97189febe")
                 .request()
                 .await(
-                        new Callbacks.onResponse(){
-                            @Override
-                            public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
-                                NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
+                    new Callbacks.onResponse(){
+                        @Override
+                        public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
+                            NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
                                 textView.setText(jsonAsString);
-                            }
-
-                            @Override
-                            public void onFailure(@Nullable String errorResponse, int responseCode) {
-                                textView.setText(errorResponse);
-                            }
                         }
+
+                        @Override
+                        public void onFailure(@Nullable String errorResponse, int responseCode) {
+                            textView.setText(errorResponse);
+                        }
+                    }
                 );
 
 ## Make a POST request

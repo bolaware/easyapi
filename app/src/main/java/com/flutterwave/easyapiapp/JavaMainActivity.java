@@ -3,6 +3,7 @@ package com.flutterwave.easyapiapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flutterwave.easyapi.EasyApiUtils;
 import com.flutterwave.easyapi.callbacks.Callbacks;
@@ -24,7 +25,7 @@ public class JavaMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_main);
 
-        post();
+        get();
     }
 
 
@@ -76,6 +77,7 @@ public class JavaMainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(@NotNull String jsonAsString, @NotNull EasyApiCaller easyApiCaller) {
                                 NewsResponse newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse.class);
+                                Toast.makeText(JavaMainActivity.this, newsResponse.getArticles().size() + " articles fetched", Toast.LENGTH_LONG).show();
                                 textView.setText(jsonAsString);
                             }
 

@@ -2,6 +2,7 @@ package com.flutterwave.easyapiapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.flutterwave.easyapi.EasyApiUtils
 import com.flutterwave.easyapi.callbacks.Callbacks
 import com.flutterwave.easyapi.general.EasyApiCaller
@@ -17,9 +18,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // get()
+        // post()
 
-        post()
+        get()
     }
 
     private fun get(){
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 .await(object : Callbacks.onResponse {
                     override fun onResponse(jsonAsString: String, easyApiCaller: EasyApiCaller) {
                         var newsResponse = EasyApiUtils.convertFromJson(jsonAsString, NewsResponse::class.java)
+                        Toast.makeText(this@MainActivity, newsResponse.articles.size.toString() + " articles fetched", Toast.LENGTH_LONG).show()
                         textTV.text = jsonAsString
                     }
 

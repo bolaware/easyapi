@@ -71,7 +71,7 @@ Here's another example of a post request to create an employee using a public ap
 **Step 2.** Add the dependency
 
     dependencies {
-	      implementation 'com.github.BolajisBrain:easyapi:v1.1'
+	      implementation 'com.github.bolaware:easyapi:v1.1'
 	}
 
 
@@ -87,7 +87,7 @@ Here's another example of a post request to create an employee using a public ap
 | EasyApiUtils.convertFromJson(jsonAsString, class) |  Call to convert json string to a corresponding java class | `jsonString`, `Class` | Optional
 
 ##  Help
-* Find a bug? [Open an issue](https://github.com/BolajisBrain/easyapi/issues)
+* Find a bug? [Open an issue](https://github.com/bolaware/easyapi/issues)
 * Want to contribute? [Submit a pull request](https://help.github.com/articles/creating-a-pull-request).
 
 ## License
